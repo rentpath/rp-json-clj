@@ -1,4 +1,4 @@
-(ns rp.geo.json-spec
+(ns rp.json.geo-json-spec
   (:require [clojure.spec :as s]))
 
 (s/def ::longitude (s/and number? #(<= -180 % 180)))

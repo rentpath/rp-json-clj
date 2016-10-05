@@ -1,2 +1,2 @@
-(ns rp.geo.json
+(ns rp.json.geo-json
   "GeoJSON utilities")
