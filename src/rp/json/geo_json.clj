@@ -5,8 +5,7 @@
   [{:keys [longitude latitude properties]}]
   {:type "Feature"
    :geometry {:type "Point"
-              :coordinates [(util-string/parse-double longitude)
-                            (util-string/parse-double latitude)]}
+              :coordinates [longitude latitude]}
    :properties properties})
 
 (defn geo-json-feature-collection
