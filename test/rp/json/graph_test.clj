@@ -5,10 +5,6 @@
             [clojure.spec.test :as stest]
             [rp.json.graph :refer :all]))
 
-(s/def :json-graph-ref/$type #{:ref})
-(s/def ::value any?)
-(s/def ::ref (s/keys :requn [:json-graph-ref/$type ::value]))
-
 (s/fdef rp.json.graph/ref
         :args (s/cat :value any?)
         :ret (fn []))
