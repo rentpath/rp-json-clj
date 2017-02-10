@@ -1,4 +1,4 @@
-(defproject com.rentpath/rp-json-clj "0.2.3-SNAPSHOT"
+(defproject com.rentpath/rp-json-clj "0.2.3"
   :description "Miscellaneous JSON utilities"
   :url "https://github.com/rentpath/rp-json-clj"
   :license {:name "Eclipse Public License"
