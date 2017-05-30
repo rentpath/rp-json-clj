@@ -1,23 +1,23 @@
 (ns rp.json.geo-json-spec
-  (:require [clojure.spec :as s]))
+  (:require [clojure.spec.alpha :as spec]))
 
-(s/def ::longitude (s/and number? #(<= -180 % 180)))
-(s/def ::latitude (s/and number? #(<= -90 % 90)))
-(s/def :geo-json/coordinates (s/tuple ::longitude ::latitude))
-(s/def :geo-json-point/coordinates :geo-json/coordinates)
-(s/def :geo-json-multi-point/coordinates (s/coll-of :geo-json/coordinates :kind vector?))
+(spec/def ::longitude (spec/and number? #(<= -180 % 180)))
+(spec/def ::latitude (spec/and number? #(<= -90 % 90)))
+(spec/def :geo-json/coordinates (spec/tuple ::longitude ::latitude))
+(spec/def :geo-json-point/coordinates :geo-json/coordinates)
+(spec/def :geo-json-multi-point/coordinates (spec/coll-of :geo-json/coordinates :kind vector?))
 
 (defmulti geo-json-geometry-type :type)
 (defmethod geo-json-geometry-type "Point" [_]
-  (s/keys :req-un [:geo-json/type :geo-json-point/coordinates]))
+  (spec/keys :req-un [:geo-json/type :geo-json-point/coordinates]))
 (defmethod geo-json-geometry-type "MultiPoint" [_]
-  (s/keys :req-un [:geo-json/type :geo-json-multi-point/coordinates]))
-(s/def :geo-json/geometry (s/multi-spec geo-json-geometry-type :type))
+  (spec/keys :req-un [:geo-json/type :geo-json-multi-point/coordinates]))
+(spec/def :geo-json/geometry (spec/multi-spec geo-json-geometry-type :type))
 
-(s/def :geo-json-feature/type #{"Feature"})
-(s/def :geo-json/properties map?)
-(s/def :geo-json/feature (s/keys :req-un [:geo-json-feature/type :geo-json/geometry :geo-json/properties]))
+(spec/def :geo-json-feature/type #{"Feature"})
+(spec/def :geo-json/properties map?)
+(spec/def :geo-json/feature (spec/keys :req-un [:geo-json-feature/type :geo-json/geometry :geo-json/properties]))
 
-(s/def :geo-json-feature-collection/type #{"FeatureCollection"})
-(s/def :geo-json/features (s/coll-of :geo-json/feature :kind vector?))
-(s/def :geo-json/feature-collection (s/keys :req-un [:geo-json-feature-collection/type :geo-json/features]))
+(spec/def :geo-json-feature-collection/type #{"FeatureCollection"})
+(spec/def :geo-json/features (spec/coll-of :geo-json/feature :kind vector?))
+(spec/def :geo-json/feature-collection (spec/keys :req-un [:geo-json-feature-collection/type :geo-json/features]))
