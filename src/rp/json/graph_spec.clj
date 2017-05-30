@@ -1,6 +1,6 @@
 (ns rp.json.graph-spec
-  (:require [clojure.spec :as s]))
+  (:require [clojure.spec.alpha :as spec]))
 
-(s/def :json-graph-ref/$type #{"ref"})
-(s/def ::value any?)
-(s/def ::ref (s/keys :req-un [:json-graph-ref/$type ::value]))
+(spec/def :json-graph-ref/$type #{"ref"})
+(spec/def ::value any?)
+(spec/def ::ref (spec/keys :req-un [:json-graph-ref/$type ::value]))

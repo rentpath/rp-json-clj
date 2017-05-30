@@ -1,14 +1,14 @@
 (ns rp.json.graph-test
   (:refer-clojure :exclude [ref])
   (:require [clojure.test :refer :all]
-            [clojure.spec :as s]
-            [clojure.spec.test :as stest]
+            [clojure.spec.alpha :as spec]
+            [clojure.spec.test.alpha :as spec-test]
             [rp.json.graph :refer :all]))
 
-(s/fdef rp.json.graph/ref
-        :args (s/cat :value any?)
-        :ret (fn []))
-(stest/instrument 'rp.json.graph/ref)
+(spec/fdef rp.json.graph/ref
+           :args (spec/cat :value any?)
+           :ret (fn []))
+(spec-test/instrument 'rp.json.graph/ref)
 
 (deftest test-ref
   (is (= {:$type :ref

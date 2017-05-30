@@ -1,7 +1,7 @@
 (ns rp.json.geo-json-test
   (:require [rp.json.geo-json :refer :all]
             [clojure.test :refer :all]
-            [clojure.spec :as s]
+            [clojure.spec.alpha :as spec]
             [rp.json.geo-json-spec]))
 
 (deftest test-feature
@@ -9,7 +9,7 @@
                :latitude 30.3453
                :properties {:id "143958"
                             :name "Overlook at Cambridge"}}]
-    (is (s/valid? :geo-json/feature (feature point)))))
+    (is (spec/valid? :geo-json/feature (feature point)))))
 
 (deftest test-geo-json-feature-collection
   (let [points [{:longitude -175.02
@@ -24,5 +24,5 @@
                  :latitude 33.5523
                  :properties {:id "7324"
                               :name "The Villas at Kenny's House"}}]]
-    (is (s/valid? :geo-json/feature-collection
-                  (feature-collection (mapv feature points))))))
+    (is (spec/valid? :geo-json/feature-collection
+                     (feature-collection (mapv feature points))))))
