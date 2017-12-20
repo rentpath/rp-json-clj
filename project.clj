@@ -9,4 +9,4 @@
                                      :password [:gpg :env/CLOJARS_PASSWORD]
                                      :sign-releases false}]]
   :global-vars {*warn-on-reflection* true}
-  :profiles {:dev {:dependencies [[org.clojure/clojure "1.9.0-alpha16"]]}})
+  :profiles {:dev {:dependencies [[org.clojure/clojure "1.9.0"]]}})
